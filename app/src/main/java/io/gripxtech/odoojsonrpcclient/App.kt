@@ -2,6 +2,7 @@ package io.gripxtech.odoojsonrpcclient
 
 import android.app.Application
 import io.gripxtech.odoojsonrpcclient.core.Odoo
+import io.gripxtech.odoojsonrpcclient.core.OdooDatabase
 import io.gripxtech.odoojsonrpcclient.core.utils.CookiePrefs
 import io.gripxtech.odoojsonrpcclient.core.utils.LetterTileProvider
 import io.gripxtech.odoojsonrpcclient.core.utils.Retrofit2Helper
@@ -24,6 +25,7 @@ class App : Application() {
     override fun onCreate() {
         super.onCreate()
         Odoo.app = this
+        OdooDatabase.app = this
         Retrofit2Helper.app = this
 
         if (BuildConfig.DEBUG) {

@@ -13,9 +13,9 @@ import io.gripxtech.odoojsonrpcclient.core.OdooUser
 import io.gripxtech.odoojsonrpcclient.trimFalse
 
 class NavHeaderViewHolder(view: View) {
-    val pic: CircleImageView = view.findViewById(R.id.userImage)
-    val name: TextView = view.findViewById(R.id.header_name)
-    val email: TextView = view.findViewById(R.id.header_details)
+    private val pic: CircleImageView = view.findViewById(R.id.userImage)
+    private val name: TextView = view.findViewById(R.id.header_name)
+    private val email: TextView = view.findViewById(R.id.header_details)
     val menuToggle: ConstraintLayout = view.findViewById(R.id.menuToggle)
     val menuToggleImage: ImageView = view.findViewById(R.id.ivDropdown)
 

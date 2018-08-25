@@ -1,21 +1,21 @@
 package io.gripxtech.odoojsonrpcclient.core.utils.android.ktx
 
-import io.reactivex.Observer
-import io.reactivex.disposables.Disposable
+import io.reactivex.FlowableSubscriber
+import org.reactivestreams.Subscription
 import timber.log.Timber
 
-class ObserverEx<T> : Observer<T> {
+class FlowableSubscriberEx<T> : FlowableSubscriber<T> {
 
-    private var subscribe: ((disposable: Disposable) -> Unit) = {
+    private var subscribe: ((subscription: Subscription) -> Unit) = {
         Timber.d("onSubscribe() called")
     }
 
-    fun onSubscribe(subscribe: (disposable: Disposable) -> Unit) {
+    fun onSubscribe(subscribe: (subscription: Subscription) -> Unit) {
         this.subscribe = subscribe
     }
 
-    override fun onSubscribe(disposable: Disposable) {
-        this.subscribe.invoke(disposable)
+    override fun onSubscribe(subscription: Subscription) {
+        this.subscribe.invoke(subscription)
     }
 
     private var next: ((response: T) -> Unit) = {

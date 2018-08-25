@@ -3,11 +3,13 @@
 buildscript {
     ext {
         gradle_version = '3.1.4'
-        kotlin_version = '1.2.60'
+        kotlin_version = '1.2.61'
         support_library_version = '27.1.1'
         retrofit_version = '2.4.0'
-        okhttp_version = '3.10.0'
-        glide_version = '4.7.1'
+        okhttp_version = '3.11.0'
+        glide_version = '4.8.0'
+        lifecycle_version = "1.1.1"
+        room_version = "1.1.1"
     }
     repositories {
         google()

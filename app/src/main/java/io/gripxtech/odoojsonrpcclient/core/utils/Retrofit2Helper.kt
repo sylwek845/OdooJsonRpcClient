@@ -59,7 +59,7 @@ class Retrofit2Helper(
             return _retrofit!!
         }
 
-    val client: OkHttpClient
+    private val client: OkHttpClient
         get() = OkHttpClient()
                 .newBuilder()
                 .cookieJar(object : CookieJar {

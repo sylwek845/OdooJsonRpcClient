@@ -1,10 +1,10 @@
 package io.gripxtech.odoojsonrpcclient.core.utils.android.ktx
 
-import io.reactivex.Observer
+import io.reactivex.MaybeObserver
 import io.reactivex.disposables.Disposable
 import timber.log.Timber
 
-class ObserverEx<T> : Observer<T> {
+class MaybeObserverEx<T> : MaybeObserver<T> {
 
     private var subscribe: ((disposable: Disposable) -> Unit) = {
         Timber.d("onSubscribe() called")
@@ -18,16 +18,16 @@ class ObserverEx<T> : Observer<T> {
         this.subscribe.invoke(disposable)
     }
 
-    private var next: ((response: T) -> Unit) = {
+    private var success: ((response: T) -> Unit) = {
         Timber.d("onNext() called: response is $it")
     }
 
-    fun onNext(next: (response: T) -> Unit) {
-        this.next = next
+    fun onSuccess(success: (response: T) -> Unit) {
+        this.success = success
     }
 
-    override fun onNext(response: T) {
-        this.next.invoke(response)
+    override fun onSuccess(response: T) {
+        this.success.invoke(response)
     }
 
     private var error: ((error: Throwable) -> Unit) = {

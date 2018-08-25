@@ -344,7 +344,7 @@ abstract class RecyclerBaseAdapter(
         pvtMoreListener = null
     }
 
-    fun finishedlessLoading() {
+    fun finishLessLoading() {
         isMoreLoading = false
         isLoading = false
     }
@@ -363,7 +363,7 @@ abstract class RecyclerBaseAdapter(
         pvtLessListener = null
     }
 
-    fun finishedMoreLoading() {
+    fun finishMoreLoading() {
         isMoreLoading = false
         isLoading = false
     }

@@ -17,6 +17,7 @@ import android.text.Spanned
 import android.view.inputmethod.InputMethodManager
 import com.google.gson.*
 import io.gripxtech.odoojsonrpcclient.core.Odoo
+import io.gripxtech.odoojsonrpcclient.core.OdooDatabase
 import io.gripxtech.odoojsonrpcclient.core.OdooUser
 import io.gripxtech.odoojsonrpcclient.core.authenticator.SplashActivity
 import io.gripxtech.odoojsonrpcclient.core.entities.Many2One
@@ -25,6 +26,10 @@ import io.gripxtech.odoojsonrpcclient.core.utils.encryptAES
 import retrofit2.Response
 
 const val RECORD_LIMIT = 10
+
+val odooDatabase: OdooDatabase by lazy {
+    OdooDatabase.database!!
+}
 
 val gson: Gson by lazy {
     GsonBuilder().excludeFieldsWithoutExposeAnnotation().create()

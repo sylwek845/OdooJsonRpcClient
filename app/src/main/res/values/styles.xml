@@ -37,12 +37,12 @@
         <item name="android:textColor">@color/colorPrimary</item>
     </style>
 
-    <style name="ErrorTextAppearance" parent="@style/TextAppearance.AppCompat">
+    <style name="ErrorTextAppearance" parent="TextAppearance.AppCompat">
         <item name="android:textColor">@android:color/holo_red_dark</item>
         <item name="android:textSize">12sp</item>
     </style>
 
-    <style name="DisabledHintTextAppearance" parent="@style/TextAppearance.Design.Hint">
+    <style name="DisabledHintTextAppearance" parent="TextAppearance.Design.Hint">
         <item name="android:textColor">?android:textColorSecondary</item>
         <item name="android:layout_marginStart">5dp</item>
     </style>

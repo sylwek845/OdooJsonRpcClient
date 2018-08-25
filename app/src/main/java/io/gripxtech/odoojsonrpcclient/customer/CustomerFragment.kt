@@ -12,9 +12,14 @@ import android.view.ViewGroup
 import com.google.gson.reflect.TypeToken
 import io.gripxtech.odoojsonrpcclient.*
 import io.gripxtech.odoojsonrpcclient.core.Odoo
+import io.gripxtech.odoojsonrpcclient.core.utils.android.ktx.subscribeEx
 import io.gripxtech.odoojsonrpcclient.customer.entities.Customer
 import io.gripxtech.odoojsonrpcclient.databinding.FragmentCustomerBinding
+import io.reactivex.Single
+import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.schedulers.Schedulers
+import timber.log.Timber
 
 class CustomerFragment : Fragment() {
 
@@ -165,38 +170,79 @@ class CustomerFragment : Fragment() {
                 if (response.isSuccessful) {
                     val searchRead = response.body()!!
                     if (searchRead.isSuccessful) {
-                        adapter.hideEmpty()
-                        adapter.hideError()
-                        adapter.hideMore()
                         val items: ArrayList<Customer> = gson.fromJson(searchRead.result.records, customerListType)
-                        if (items.size < limit) {
-                            adapter.removeMoreListener()
-                            if (items.size == 0 && adapter.rowItemCount == 0) {
-                                adapter.showEmpty()
-                            }
-                        } else {
-                            if (!adapter.hasMoreListener()) {
-                                adapter.moreListener {
-                                    fetchCustomer()
-                                }
-                            }
-                        }
-                        adapter.addRowItems(items)
-                        compositeDisposable.dispose()
-                        compositeDisposable = CompositeDisposable()
+                        insertCustomers(items)
                     } else {
                         adapter.showError(searchRead.errorMessage)
                     }
                 } else {
                     adapter.showError(response.errorBodySpanned)
                 }
-                adapter.finishedMoreLoading()
+                adapter.finishMoreLoading()
             }
 
             onError { error ->
                 error.printStackTrace()
                 adapter.showError(error.message ?: getString(R.string.generic_error))
-                adapter.finishedMoreLoading()
+                adapter.finishMoreLoading()
+            }
+        }
+    }
+
+    private fun insertCustomers(items: ArrayList<Customer>) {
+        Single.fromCallable<List<Long>> {
+            odooDatabase.customerDao().insertCustomers(items)
+        }.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribeEx {
+            onSubscribe { disposable ->
+                compositeDisposable.add(disposable)
+            }
+
+            onSuccess { response ->
+                Timber.d("insertCustomers() > ...subscribeEx{...} > onSuccess{...} response: $response")
+                retrieveData()
+            }
+
+            onError { error ->
+                error.printStackTrace()
+                adapter.showError(error.message ?: getString(R.string.generic_error))
+                adapter.finishMoreLoading()
+            }
+        }
+    }
+
+    private fun retrieveData() {
+        Single.fromCallable<List<Customer>> {
+            odooDatabase.customerDao().getCustomers()
+        }.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribeEx {
+            onSubscribe { disposable ->
+                compositeDisposable.add(disposable)
+            }
+
+            onSuccess { response ->
+                Timber.d("retrieveData() > ...subscribeEx{...} > onSuccess{...} response:")
+                val items = ArrayList(response)
+                adapter.hideEmpty()
+                adapter.hideError()
+                adapter.hideMore()
+                if (items.size < limit) {
+                    adapter.removeMoreListener()
+                    if (items.size == 0 && adapter.rowItemCount == 0) {
+                        adapter.showEmpty()
+                    }
+                } else {
+                    if (!adapter.hasMoreListener()) {
+                        adapter.moreListener {
+                            fetchCustomer()
+                        }
+                    }
+                }
+                adapter.addRowItems(items)
+            }
+
+            onError { error ->
+                error.printStackTrace()
+                adapter.showError(error.message ?: getString(R.string.generic_error))
+                adapter.finishMoreLoading()
             }
         }
     }
