@@ -24,7 +24,7 @@ import io.gripxtech.odoojsonrpcclient.core.entities.session.authenticate.Authent
 import io.gripxtech.odoojsonrpcclient.core.utils.encryptAES
 import retrofit2.Response
 
-const val RECORD_LIMIT = 10
+const val RECORD_LIMIT = 1000
 
 val gson: Gson by lazy {
     GsonBuilder().excludeFieldsWithoutExposeAnnotation().create()

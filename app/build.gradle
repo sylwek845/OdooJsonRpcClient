@@ -24,11 +24,11 @@ android {
         }
     }
 
-    compileSdkVersion 27
+    compileSdkVersion 29
     defaultConfig {
         applicationId "io.gripxtech.odoojsonrpcclient"
         minSdkVersion 17
-        targetSdkVersion 27
+        targetSdkVersion 29
         versionCode 3
         versionName "1.02"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
