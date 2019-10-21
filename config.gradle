@@ -1,0 +1,28 @@
+
+
+android {
+
+
+    compileSdkVersion 29
+    defaultConfig {
+        minSdkVersion 17
+        targetSdkVersion 29
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        vectorDrawables.useSupportLibrary = true
+        multiDexEnabled true
+    }
+
+    dataBinding {
+        enabled true
+    }
+    packagingOptions {
+        exclude 'LICENSE.txt'
+    }
+
+
+    compileOptions {
+        sourceCompatibility 1.8
+        targetCompatibility 1.8
+    }
+
+}

@@ -278,7 +278,7 @@ return: List of objects containing the asked fields.
 ```kotlin
 Odoo.searchRead(model = "res.partner", fields = listOf(
         "id", "name", "email", "company_name"
-), domain = listOf(listOf("customer", "=", true)), offset = 0, limit = 4, sort = "name ASC") {
+), domain = listOf(listOf("customerResponse", "=", true)), offset = 0, limit = 4, sort = "name ASC") {
     onSubscribe { disposable ->
         compositeDisposable.add(disposable)
     }

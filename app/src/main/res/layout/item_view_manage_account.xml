@@ -5,11 +5,11 @@
 
     <data>
 
-        <import type="io.gripxtech.odoojsonrpcclient.UtilsKt" />
+        <import type="com.odoo.common.UtilsKt" />
 
         <variable
             name="user"
-            type="io.gripxtech.odoojsonrpcclient.core.OdooUser" />
+            type="com.odoo.common.OdooUser" />
     </data>
 
     <androidx.cardview.widget.CardView

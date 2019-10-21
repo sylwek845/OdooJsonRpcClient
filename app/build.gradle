@@ -1,9 +1,10 @@
 apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-kapt'
-apply plugin: 'kotlin-android-extensions'
-apply plugin: 'io.mironov.smuggler'
-apply plugin: 'io.objectbox' // Apply last.
+
+apply from: '../plugin.gradle'
+apply from: '../kapt.gradle'
+apply from: '../config.gradle'
+apply from: '../dependecies.gradle'
+apply from: '../test-dependecies.gradle'
 
 // Create a variable called keystorePropertiesFile, and initialize it to your
 // keystore.properties file, in the rootProject folder.
@@ -16,7 +17,7 @@ def keystoreProperties = new Properties()
 keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
 
 android {
-    signingConfigs {
+        signingConfigs {
         config {
             keyAlias keystoreProperties['keyAlias']
             keyPassword keystoreProperties['keyPassword']
@@ -25,17 +26,7 @@ android {
         }
     }
 
-    compileSdkVersion 29
-    defaultConfig {
-        applicationId "io.gripxtech.odoojsonrpcclient"
-        minSdkVersion 17
-        targetSdkVersion 29
-        versionCode 3
-        versionName "1.02"
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        vectorDrawables.useSupportLibrary = true
-    }
-    buildTypes {
+        buildTypes {
         release {
             shrinkResources true
             minifyEnabled true
@@ -46,54 +37,14 @@ android {
             signingConfig signingConfigs.config
         }
     }
-    dataBinding {
-        enabled true
-    }
-    packagingOptions {
-        exclude 'LICENSE.txt'
-    }
-    compileOptions {
-        sourceCompatibility 1.8
-        targetCompatibility 1.8
-    }
 
+    defaultConfig {
+        applicationId "io.gripxtech.odoojsonrpcclient"
+        versionCode 3
+        versionName "1.02"
+    }
 }
-
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation 'androidx.appcompat:appcompat:1.1.0'
-    implementation 'com.google.android.material:material:1.0.0'
-    implementation 'androidx.recyclerview:recyclerview:1.0.0'
-    implementation 'androidx.cardview:cardview:1.0.0'
-    implementation 'androidx.legacy:legacy-preference-v14:1.0.0'
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    kapt 'androidx.databinding:databinding-compiler:3.5.1'
-    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
-    implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
-    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofit_version"
-    implementation "com.github.bumptech.glide:glide:$glide_version"
-    kapt "com.github.bumptech.glide:compiler:$glide_version"
-    implementation "com.github.bumptech.glide:okhttp3-integration:$glide_version"
-    implementation 'de.hdodenhof:circleimageview:2.2.0'
-    implementation 'com.google.code.gson:gson:2.8.5'
-    implementation "com.squareup.okhttp3:okhttp:$okhttp_version"
-    implementation "com.squareup.okhttp3:logging-interceptor:$okhttp_version"
-    implementation 'io.reactivex.rxjava2:rxandroid:2.0.2'
-    implementation 'io.reactivex.rxjava2:rxjava:2.1.16'
-    implementation 'com.jakewharton.timber:timber:4.7.0'
-    implementation 'com.intuit.sdp:sdp-android:1.0.5'
-    implementation 'com.intuit.ssp:ssp-android:1.0.5'
-    implementation "com.google.dagger:dagger:$daggerVer"
-    implementation "com.google.dagger:dagger-android:$daggerVer"
-    annotationProcessor "com.google.dagger:dagger-android-processor:$daggerVer"
-    annotationProcessor "com.google.dagger:dagger-compiler:$daggerVer"
-    kapt "com.google.dagger:dagger-compiler:$daggerVer"
-    kapt "com.google.dagger:dagger-android-processor:$daggerVer"
-    implementation 'androidx.lifecycle:lifecycle-extensions:2.1.0'
-    implementation 'androidx.lifecycle:lifecycle-viewmodel:2.1.0'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0'
+    api project(path: ':customers')
+    api project(path: ':common')
 }

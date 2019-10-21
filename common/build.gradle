@@ -1,0 +1,8 @@
+apply plugin: 'com.android.library'
+
+apply from: '../config.gradle'
+//apply from: '../kapt.gradle'
+apply from: '../dependecies.gradle'
+apply from: '../plugin.gradle'
+
+

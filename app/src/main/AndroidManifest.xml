@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="io.gripxtech.odoojsonrpcclient">
+    package="io.gripxtech.odoo">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -13,7 +13,7 @@
     <uses-permission android:name="android.permission.MANAGE_ACCOUNTS" />
 
     <application
-        android:name=".App"
+        android:name="io.gripxtech.odoo.App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -22,17 +22,17 @@
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
         <activity
-            android:name=".MainActivity"
+            android:name="io.gripxtech.odoo.MainActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".core.authenticator.LoginActivity"
+            android:name="io.gripxtech.odoo.core.authenticator.LoginActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".core.authenticator.SplashActivity"
+            android:name="io.gripxtech.odoo.core.authenticator.SplashActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar.Immersive.Splash">
@@ -43,23 +43,23 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".core.authenticator.ProfileActivity"
+            android:name="io.gripxtech.odoo.core.authenticator.ProfileActivity"
             android:label="@string/action_profile"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".core.authenticator.ManageAccountActivity"
+            android:name="io.gripxtech.odoo.core.authenticator.ManageAccountActivity"
             android:label="@string/action_manage_account"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".core.preferences.SettingsActivity"
+            android:name="io.gripxtech.odoo.core.preferences.SettingsActivity"
             android:label="@string/action_settings"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
 
         <service
-            android:name=".core.authenticator.AuthenticatorService"
+            android:name="io.gripxtech.odoo.core.authenticator.AuthenticatorService"
             android:enabled="true"
             android:exported="true"
             tools:ignore="ExportedService">

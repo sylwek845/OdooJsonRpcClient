@@ -23,7 +23,7 @@
         </com.google.android.material.appbar.AppBarLayout>
 
         <fragment
-            android:name="io.gripxtech.odoojsonrpcclient.core.preferences.SettingsFragment"
+            android:name="io.gripxtech.odoo.core.preferences.SettingsFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:tag="SettingsFragment"
