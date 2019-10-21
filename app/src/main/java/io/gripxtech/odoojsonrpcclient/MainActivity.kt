@@ -2,12 +2,12 @@ package io.gripxtech.odoojsonrpcclient
 
 import android.content.Intent
 import android.content.res.Configuration
-import android.databinding.DataBindingUtil
+import androidx.databinding.DataBindingUtil
 import android.os.Bundle
-import android.support.v4.view.GravityCompat
-import android.support.v7.app.ActionBarDrawerToggle
-import android.support.v7.app.AppCompatActivity
-import android.support.v7.app.AppCompatDelegate
+import androidx.core.view.GravityCompat
+import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import io.gripxtech.odoojsonrpcclient.core.authenticator.LoginActivity
 import io.gripxtech.odoojsonrpcclient.core.authenticator.ManageAccountActivity
 import io.gripxtech.odoojsonrpcclient.core.authenticator.ProfileActivity
@@ -159,7 +159,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    override fun onConfigurationChanged(newConfig: Configuration?) {
+    override fun onConfigurationChanged(newConfig: Configuration) {
         super.onConfigurationChanged(newConfig)
         drawerToggle.onConfigurationChanged(newConfig)
     }

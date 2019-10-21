@@ -8,10 +8,10 @@ import android.content.Intent
 import android.net.ConnectivityManager
 import android.os.Build
 import android.os.Handler
-import android.support.v4.app.ActivityCompat
-import android.support.v4.app.TaskStackBuilder
-import android.support.v7.app.AlertDialog
-import android.support.v7.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.core.app.TaskStackBuilder
+import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import android.text.Html
 import android.text.Spanned
 import android.view.inputmethod.InputMethodManager

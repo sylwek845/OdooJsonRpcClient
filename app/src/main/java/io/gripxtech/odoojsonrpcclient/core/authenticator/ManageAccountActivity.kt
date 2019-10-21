@@ -1,10 +1,10 @@
 package io.gripxtech.odoojsonrpcclient.core.authenticator
 
-import android.databinding.DataBindingUtil
-import android.support.v7.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.support.v7.app.AppCompatDelegate
-import android.support.v7.widget.LinearLayoutManager
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.recyclerview.widget.LinearLayoutManager
 import io.gripxtech.odoojsonrpcclient.App
 import io.gripxtech.odoojsonrpcclient.R
 import io.gripxtech.odoojsonrpcclient.core.utils.recycler.decorators.VerticalLinearItemDecorator
@@ -40,7 +40,7 @@ class ManageAccountActivity : AppCompatActivity() {
 
         val users = getOdooUsers()
         val layoutManager = LinearLayoutManager(
-                this, LinearLayoutManager.VERTICAL, false
+            this, LinearLayoutManager.VERTICAL, false
         )
         binding.rv.layoutManager = layoutManager
         binding.rv.addItemDecoration(VerticalLinearItemDecorator(

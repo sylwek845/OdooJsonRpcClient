@@ -7,7 +7,9 @@ buildscript {
         support_library_version = '27.1.1'
         retrofit_version = '2.4.0'
         okhttp_version = '3.10.0'
-        glide_version = '4.7.1'
+        glide_version = '4.10.0'
+        daggerVer = '2.23.2'
+        objectboxVersion = '2.4.0'
     }
     repositories {
         google()
@@ -17,6 +19,7 @@ buildscript {
         classpath "com.android.tools.build:gradle:$gradle_version"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath "io.mironov.smuggler:smuggler-plugin:0.14.0"
+        classpath "io.objectbox:objectbox-gradle-plugin:$objectboxVersion"
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files

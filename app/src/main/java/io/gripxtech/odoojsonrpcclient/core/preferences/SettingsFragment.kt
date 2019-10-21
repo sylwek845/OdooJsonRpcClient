@@ -4,9 +4,9 @@ import android.content.Intent
 import android.net.MailTo
 import android.net.Uri
 import android.os.Bundle
-import android.support.design.widget.Snackbar
-import android.support.v7.preference.Preference
-import android.support.v7.preference.PreferenceFragmentCompat
+import com.google.android.material.snackbar.Snackbar
+import androidx.preference.Preference
+import androidx.preference.PreferenceFragmentCompat
 import io.gripxtech.odoojsonrpcclient.BuildConfig
 import io.gripxtech.odoojsonrpcclient.R
 import io.gripxtech.odoojsonrpcclient.getActiveOdooUser
@@ -35,7 +35,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
 
         build.summary = getString(R.string.preference_build_summary, BuildConfig.VERSION_NAME)
 
-        organization.setOnPreferenceClickListener { _: Preference ->
+        organization.setOnPreferenceClickListener {
             startActivity(Intent(
                     Intent.ACTION_VIEW,
                     Uri.parse(getString(R.string.preference_organization_website))
@@ -43,7 +43,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
             true
         }
 
-        privacy.setOnPreferenceClickListener { _: Preference ->
+        privacy.setOnPreferenceClickListener {
             startActivity(Intent(
                     Intent.ACTION_VIEW,
                     Uri.parse(getString(R.string.preference_privacy_policy_url))
@@ -51,7 +51,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
             true
         }
 
-        contact.setOnPreferenceClickListener { _: Preference ->
+        contact.setOnPreferenceClickListener {
             val lclContext = context
             val url = ("mailto:" + getString(R.string.preference_contact_summary)
                     + "?subject=Contact by " + getString(R.string.app_name) + " user " +

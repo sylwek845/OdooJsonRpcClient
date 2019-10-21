@@ -2,10 +2,10 @@ package io.gripxtech.odoojsonrpcclient.customer
 
 import android.content.res.Configuration
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.support.v7.app.ActionBarDrawerToggle
-import android.support.v7.widget.DividerItemDecoration
-import android.support.v7.widget.LinearLayoutManager
+import androidx.fragment.app.Fragment
+import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -63,7 +63,7 @@ class CustomerFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         activity = getActivity() as MainActivity
         arguments?.let {
-            customerType = CustomerType.valueOf(it.getString(TYPE))
+            customerType = CustomerType.valueOf(it.getString(TYPE).orEmpty())
         }
 
         // Hiding MainActivity's AppBarLayout as well as NestedScrollView first
@@ -97,11 +97,14 @@ class CustomerFragment : Fragment() {
         drawerToggle.syncState()
 
         val layoutManager = LinearLayoutManager(
-                activity, LinearLayoutManager.VERTICAL, false
+            activity, LinearLayoutManager.VERTICAL, false
         )
         binding.rv.layoutManager = layoutManager
         binding.rv.addItemDecoration(
-                DividerItemDecoration(activity, LinearLayoutManager.VERTICAL)
+            DividerItemDecoration(
+                activity,
+                LinearLayoutManager.VERTICAL
+            )
         )
 
         adapter.setupScrollListener(binding.rv)
@@ -131,7 +134,7 @@ class CustomerFragment : Fragment() {
         binding.rv.adapter = adapter
     }
 
-    override fun onConfigurationChanged(newConfig: Configuration?) {
+    override fun onConfigurationChanged(newConfig: Configuration) {
         super.onConfigurationChanged(newConfig)
         if (::drawerToggle.isInitialized) {
             drawerToggle.onConfigurationChanged(newConfig)

@@ -1,13 +1,13 @@
 package io.gripxtech.odoojsonrpcclient.core.utils.recycler
 
-import android.databinding.DataBindingUtil
-import android.support.annotation.DrawableRes
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Filter
 import android.widget.Filterable
+import androidx.annotation.DrawableRes
+import androidx.databinding.DataBindingUtil
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import io.gripxtech.odoojsonrpcclient.R
 import io.gripxtech.odoojsonrpcclient.core.utils.recycler.entities.*
 import io.gripxtech.odoojsonrpcclient.databinding.ItemViewRecyclerEmptyBinding
@@ -17,8 +17,8 @@ import io.gripxtech.odoojsonrpcclient.databinding.ItemViewRecyclerMoreBinding
 
 
 abstract class RecyclerBaseAdapter(
-        val items: ArrayList<Any>,
-        private var recyclerView: RecyclerView
+    val items: ArrayList<Any>,
+    private var recyclerView: RecyclerView
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>(), Filterable {
 
     companion object {
@@ -83,37 +83,37 @@ abstract class RecyclerBaseAdapter(
         when (viewType) {
             VIEW_TYPE_EMPTY -> {
                 val binding = DataBindingUtil.inflate<ItemViewRecyclerEmptyBinding>(
-                        inflater,
-                        R.layout.item_view_recycler_empty,
-                        parent,
-                        false
+                    inflater,
+                    R.layout.item_view_recycler_empty,
+                    parent,
+                    false
                 )
                 return EmptyViewHolder(binding)
             }
             VIEW_TYPE_ERROR -> {
                 val binding = DataBindingUtil.inflate<ItemViewRecyclerErrorBinding>(
-                        inflater,
-                        R.layout.item_view_recycler_error,
-                        parent,
-                        false
+                    inflater,
+                    R.layout.item_view_recycler_error,
+                    parent,
+                    false
                 )
                 return ErrorViewHolder(binding)
             }
             VIEW_TYPE_LESS -> {
                 val binding = DataBindingUtil.inflate<ItemViewRecyclerLessBinding>(
-                        inflater,
-                        R.layout.item_view_recycler_less,
-                        parent,
-                        false
+                    inflater,
+                    R.layout.item_view_recycler_less,
+                    parent,
+                    false
                 )
                 return LessViewHolder(binding)
             }
             VIEW_TYPE_MORE -> {
                 val binding = DataBindingUtil.inflate<ItemViewRecyclerMoreBinding>(
-                        inflater,
-                        R.layout.item_view_recycler_more,
-                        parent,
-                        false
+                    inflater,
+                    R.layout.item_view_recycler_more,
+                    parent,
+                    false
                 )
                 return MoreViewHolder(binding)
             }
@@ -188,9 +188,9 @@ abstract class RecyclerBaseAdapter(
         val layoutManager = recyclerView.layoutManager
         if (layoutManager != null && layoutManager is LinearLayoutManager) {
             recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-                override fun onScrolled(lclRecyclerView: RecyclerView?, dx: Int, dy: Int) {
+                override fun onScrolled(lclRecyclerView: RecyclerView, dx: Int, dy: Int) {
                     super.onScrolled(recyclerView, dx, dy)
-                    if (lclRecyclerView != null && pvtMoreListener != null || pvtLessListener != null) {
+                    if (pvtMoreListener != null || pvtLessListener != null) {
                         val totalItemCount = layoutManager.itemCount
                         val lastVisibleItem = layoutManager.findLastVisibleItemPosition()
                         val firstVisibleItem = layoutManager.findFirstVisibleItemPosition()
@@ -247,9 +247,9 @@ abstract class RecyclerBaseAdapter(
     }
 
     fun showEmpty(
-            message: CharSequence = recyclerView.context.getString(R.string.recycler_empty_title),
-            @DrawableRes
-            drawableResId: Int = R.drawable.ic_format_list_bulleted_black_24dp
+        message: CharSequence = recyclerView.context.getString(R.string.recycler_empty_title),
+        @DrawableRes
+        drawableResId: Int = R.drawable.ic_format_list_bulleted_black_24dp
     ) {
         clear()
         items += EmptyItem(message, drawableResId)
@@ -333,7 +333,7 @@ abstract class RecyclerBaseAdapter(
     }
 
     fun moreListener(
-            moreListener: () -> Unit
+        moreListener: () -> Unit
     ) {
         pvtMoreListener = moreListener
     }
@@ -350,8 +350,8 @@ abstract class RecyclerBaseAdapter(
     }
 
     fun lessListener(
-            visibleThreshold: Int = DefaultVisibleThreshold,
-            lessListener: () -> Unit
+        visibleThreshold: Int = DefaultVisibleThreshold,
+        lessListener: () -> Unit
     ) {
         lessVisibleThreshold = visibleThreshold
         pvtLessListener = lessListener

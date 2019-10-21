@@ -1,6 +1,6 @@
 package io.gripxtech.odoojsonrpcclient.core.utils
 
-import android.support.constraint.ConstraintLayout
+import androidx.constraintlayout.widget.ConstraintLayout
 import android.util.Base64
 import android.view.View
 import android.widget.ImageView

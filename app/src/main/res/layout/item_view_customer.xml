@@ -12,7 +12,7 @@
             type="io.gripxtech.odoojsonrpcclient.customer.entities.Customer" />
     </data>
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="4dp">
@@ -65,5 +65,5 @@
             app:layout_constraintTop_toBottomOf="@+id/name"
             tools:text="charlie.barnard@wealthyandsons.example.com" />
 
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

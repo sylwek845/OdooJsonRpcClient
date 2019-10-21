@@ -1,6 +1,6 @@
 package io.gripxtech.odoojsonrpcclient.customer.entities
 
-import android.databinding.BindingAdapter
+import androidx.databinding.BindingAdapter
 import android.util.Base64
 import android.widget.ImageView
 import com.google.gson.JsonElement
